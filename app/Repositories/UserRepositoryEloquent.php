@@ -14,6 +14,14 @@ use CodeDelivery\Validators\UserValidator;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+
+
+    public function getDeliveryMans()
+    {
+        return $this->model->where(['role' => 'deliveryman'])->lists('name', 'id');
+    }
+    
+    
     /**
      * Specify Model class name
      *
@@ -23,8 +31,6 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return User::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria

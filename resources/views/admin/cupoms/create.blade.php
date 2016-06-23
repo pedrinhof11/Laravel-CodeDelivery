@@ -6,18 +6,18 @@
     <div class="container">
 
 
-        <h3>Novo Clientes</h3>
+        <h3>Novo Cupom</h3>
 
         @include('errors._check')
 
 
-        {!! Form::open(['route'=>'admin.clients.store']) !!}
+        {!! Form::open(['route'=>'admin.cupoms.store']) !!}
 
-            @include('admin.clients._form')
+            @include('admin.cupoms._form')
 
             <!--- Submit Field --->
             <div class="form-group">
-                {!! Form::submit('Criar Cliente', ['class' => 'btn btn-primary']) !!}
+                {!! Form::submit('Criar cupom', ['class' => 'btn btn-primary']) !!}
             </div>
 
 

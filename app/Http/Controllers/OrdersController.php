@@ -2,62 +2,54 @@
 
 namespace CodeDelivery\Http\Controllers;
 
-use CodeDelivery\Repositories\CategoryRepository;
-use Illuminate\Http\Request;
-use CodeDelivery\Http\Requests\AdminCategoriesRequest;
-
 use CodeDelivery\Http\Requests;
-use CodeDelivery\Http\Controllers\Controller;
-use Illuminate\Support\Facades\View;
+use CodeDelivery\Repositories\OrderRepository;
+use CodeDelivery\Repositories\UserRepository;
+use CodeDelivery\Services\OrderService;
 
-class CategoriesController extends Controller
+class OrdersController extends Controller
 {
 
+
     /**
-     * @var CategoryRepository
+     * @var OrderRepository
      */
-    private $categoryRepository;
+    private $orderRepository;
+    /**
+     * @var OrderService
+     */
+    private $orderService;
 
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(OrderRepository $orderRepository, OrderService $orderService)
     {
 
-        $this->categoryRepository = $categoryRepository;
-    }
-    
-    public function index(CategoryRepository $categoryRepository)
-    {
-        $categories = $categoryRepository->paginate(10);
-
-        return view('admin.categories.index', compact('categories'));
+        $this->orderRepository = $orderRepository;
+        $this->orderService = $orderService;
     }
 
-    public function create()
+    public function index()
     {
-        return view('admin.categories.create');
-    }
-
-    public function store(AdminCategoriesRequest $request)
-    {
-        $categoria = $request->all();
-        $this->categoryRepository->create($categoria);
-        
-        return redirect()->route('admin.categories.index');
+        $orders = $this->orderRepository->paginate();
+        return view('admin.orders.index', compact('orders'));
     }
 
 
-    public function edit($id)
+    public function edit($id, UserRepository $userRepository)
     {
-        $category = $this->categoryRepository->find($id);
-        
-        return view('admin.categories.edit', compact('category'));
+        $list_status = $this->orderService->list_status();
+        $order = $this->orderRepository->find($id);
+
+        $deliveryMans = $userRepository->getDeliveryMans();
+
+        return view('admin.orders.edit', compact('order', 'list_status', 'deliveryMans'));
     }
 
-    public function update(AdminCategoriesRequest $request, $id)
+    public function update(Requests\AdminOrderRequest $request, $id)
     {
-        $categoria = $request->all();
-        $this->categoryRepository->update($categoria, $id);
-
-        return redirect()->route('admin.categories.index');
+        $order = $request->all();;
+        $this->orderRepository->update($order, $id);
+        return redirect()->route('admin.orders.index');
     }
+
     
 }

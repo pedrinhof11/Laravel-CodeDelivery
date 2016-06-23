@@ -4,7 +4,7 @@ namespace CodeDelivery\Http\Requests;
 
 use CodeDelivery\Http\Requests\Request;
 
-class AdminOrderRequest extends Request
+class AdminCupomRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class AdminOrderRequest extends Request
     public function rules()
     {
         return [
-            
+            'code' => 'required',
+            'value' => 'required',
         ];
     }
 }
