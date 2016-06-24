@@ -7,10 +7,11 @@
         @include('errors._check')
 
 
-        {!! Form::open(['route'=>'admin.clients.store']) !!}
+        {!! Form::open(['route'=>'customer.order.store', 'class'=>'form']) !!}
 
         <div class="form-group">
             <label>Total: </label>
+
             <p id="total"></p>
             <a href="#" id="btnNewItem" class="btn btn-default"> Novo Item</a><br>
 
@@ -38,7 +39,12 @@
             </table>
 
         </div>
-
+        
+        <!--- Submit Field --->
+        <div class="form-group">
+            {!! Form::submit('Criar Pedido', ['class' => 'btn btn-primary']) !!}
+        </div>
+        
         {!! Form::close() !!}
 
     </div>
