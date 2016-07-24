@@ -14,7 +14,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * This is the create oauth client endpoints table migration class.
+ * This is the create oauth Client endpoints table migration class.
  *
  * @author Luca Degasperi <packages@lucadegasperi.com>
  */

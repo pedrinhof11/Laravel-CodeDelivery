@@ -34,7 +34,7 @@ class UserTableSeeder extends Seeder
         });
 
         factory(User::class, 4)->create([
-            'role' => 'deliveryman',
+            'role' => 'Deliveryman',
         ]);
     }
 }

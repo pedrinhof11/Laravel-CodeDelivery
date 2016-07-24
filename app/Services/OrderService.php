@@ -10,6 +10,7 @@ namespace CodeDelivery\Services;
 
 
 
+use CodeDelivery\Models\Order;
 use CodeDelivery\Repositories\CupomRepository;
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\ProductRepository;
@@ -95,5 +96,17 @@ class OrderService
         return $list_status = ['0' => 'Pendente', '1'=>'A Caminho', '2'=> 'Entrege', '3' => 'Cancelado'];
     }
 
+
+    public function updateStatus($id, $idDeliveryman, $status)
+    {
+        $order = $this->orderRepository->getByIdAndDeliveryman($id, $idDeliveryman);
+        if($order instanceof Order){
+            $order->status = $status;
+            $order->save();
+            return $order;
+        }
+
+        return false;
+    }
 
 }

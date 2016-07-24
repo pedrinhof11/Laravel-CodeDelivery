@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeDelivery\Http\Controllers\api\client;
+namespace CodeDelivery\Http\Controllers\Api\Client;
 
 use CodeDelivery\Repositories\OrderRepository;
 use CodeDelivery\Repositories\ProductRepository;
@@ -98,7 +98,7 @@ class ClientCheckoutController extends Controller
     public function show($id)
     {
 
-        $o = $this->orderRepository->with('items.product', 'client', 'cupom', 'deliveryman.user')->find($id);
+        $o = $this->orderRepository->with('items.product', 'Client', 'cupom', 'Deliveryman.user')->find($id);
         $o->items->each(function($item){
             $item->product;
         });

@@ -14,7 +14,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * This is the create oauth client table migration class.
+ * This is the create oauth Client table migration class.
  *
  * @author Luca Degasperi <packages@lucadegasperi.com>
  */

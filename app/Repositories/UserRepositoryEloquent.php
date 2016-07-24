@@ -18,7 +18,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function getDeliveryMans()
     {
-        return $this->model->where(['role' => 'deliveryman'])->lists('name', 'id');
+        return $this->model->where(['role' => 'Deliveryman'])->lists('name', 'id');
     }
     
     
