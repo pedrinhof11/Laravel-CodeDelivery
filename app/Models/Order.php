@@ -16,6 +16,7 @@ class Order extends Model implements Transformable
         'total',
         'status'
     ];
+    
 
     public function client()
     {
